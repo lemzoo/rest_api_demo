@@ -31,14 +31,8 @@ def bootstrap_app(app=None, config=None):
 
     from blog.view import api
 
-    # view.prefix = app.config['BACKEND_PREFIX']
-    # app.init_app(app)
-
     blueprint = Blueprint('view', __name__, url_prefix=app.config['BACKEND_PREFIX'])
     api.init_app(blueprint)
-
-    # view.add_namespace(posts_namespace)
-    # view.add_namespace(category_namespace)
 
     app.register_blueprint(blueprint)
 
