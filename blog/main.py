@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from blog.core.core_app import CoreApp
+from core.core_app import CoreApp
 
 
 def create_app(config=None):
@@ -29,16 +29,16 @@ def bootstrap_app(app=None, config=None):
 
     app.bootstrap()
 
-    from blog.api.restplus import api
+    from blog.view import api
 
-    # api.prefix = app.config['BACKEND_PREFIX']
+    # view.prefix = app.config['BACKEND_PREFIX']
     # app.init_app(app)
 
-    blueprint = Blueprint('api', __name__, url_prefix=app.config['BACKEND_PREFIX'])
+    blueprint = Blueprint('view', __name__, url_prefix=app.config['BACKEND_PREFIX'])
     api.init_app(blueprint)
 
-    # api.add_namespace(posts_namespace)
-    # api.add_namespace(category_namespace)
+    # view.add_namespace(posts_namespace)
+    # view.add_namespace(category_namespace)
 
     app.register_blueprint(blueprint)
 
