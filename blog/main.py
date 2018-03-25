@@ -1,5 +1,3 @@
-from flask import Blueprint
-
 from core.core_app import CoreApp
 
 
@@ -31,9 +29,7 @@ def bootstrap_app(app=None, config=None):
 
     from blog.view import api
 
-    blueprint = Blueprint('view', __name__, url_prefix=app.config['BACKEND_PREFIX'])
-    api.init_app(blueprint)
-
-    app.register_blueprint(blueprint)
+    api.prefix = app.config['BACKEND_PREFIX']
+    api.init_app(app)
 
     return app
